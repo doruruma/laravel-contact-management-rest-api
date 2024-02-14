@@ -5,21 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Model
+class Contact extends Model
 {
     use SoftDeletes;
 
-    protected $tables = "users";
+    protected $tables = "contacts";
     protected $primaryKey = "id";
     protected $keyType = "int";
     public $timestamps = true;
     public $incrementing = true;
-    protected $fillable = [
-        'username', 'password', 'name'
-    ];
 
-    public function contacts()
+    public function user()
     {
-        return $this->hasMany(Contact::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function addresses() {
+        return $this->hasMany(Address::class);
     }
 }

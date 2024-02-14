@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Model
+class Address extends Model
 {
     use SoftDeletes;
 
@@ -14,12 +14,9 @@ class User extends Model
     protected $keyType = "int";
     public $timestamps = true;
     public $incrementing = true;
-    protected $fillable = [
-        'username', 'password', 'name'
-    ];
 
-    public function contacts()
+    public function contact()
     {
-        return $this->hasMany(Contact::class);
+        return $this->belongsTo(Contact::class);
     }
 }
